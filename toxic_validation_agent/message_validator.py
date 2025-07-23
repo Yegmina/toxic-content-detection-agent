@@ -131,7 +131,7 @@ class Message_Validation:
     """
     
     def __init__(self, 
-                 model_path: str = "model",
+                 model_path: str = "distilbert-base-uncased",
                  config_path: Optional[str] = None,
                  enable_logging: bool = True,
                  enable_metrics: bool = True,
@@ -141,7 +141,7 @@ class Message_Validation:
         Initialize the Message_Validation class with production-grade configuration.
         
         Args:
-            model_path (str): Path to the fine-tuned DistilBERT model
+            model_path (str): Hugging Face model name or path to fine-tuned model
             config_path (Optional[str]): Path to configuration file
             enable_logging (bool): Enable detailed logging
             enable_metrics (bool): Enable performance metrics tracking
@@ -153,7 +153,7 @@ class Message_Validation:
             ToxicValidationError: If initialization fails
         """
         try:
-            logger.info("🚀 Initializing Toxic Message Validation Agent v2.0.0")
+            logger.info("🚀 Initializing Toxic Message Validation Agent v1.0.4")
             logger.info("=" * 60)
             
             # Initialize configuration
@@ -272,7 +272,7 @@ class Message_Validation:
         Load all required ML models with comprehensive error handling.
         
         Args:
-            model_path (str): Path to the fine-tuned model
+            model_path (str): Hugging Face model name or path to fine-tuned model
             
         Raises:
             ModelLoadError: If model loading fails
@@ -280,14 +280,16 @@ class Message_Validation:
         logger.info("📥 Loading ML models...")
         
         try:
-            # Validate model path
-            if not os.path.exists(model_path):
-                raise ModelLoadError(f"Model path does not exist: {model_path}")
+            # Load DistilBERT (either from Hugging Face or local path)
+            logger.info(f"   Loading DistilBERT from: {model_path}")
+            try:
+                self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+                self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
+            except Exception as e:
+                logger.warning(f"   ⚠️  Failed to load from {model_path}, using default DistilBERT")
+                self.tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+                self.model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
             
-            # Load fine-tuned DistilBERT
-            logger.info("   Loading fine-tuned DistilBERT...")
-            self.tokenizer = AutoTokenizer.from_pretrained(model_path)
-            self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
             self.model.to(self.device)
             self.model.eval()
             logger.info("   ✅ DistilBERT loaded successfully")
