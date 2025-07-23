@@ -826,7 +826,7 @@ class Message_Validation:
             # Create validation result
             result = ValidationResult(
                 is_toxic=(result_code == 1),
-                toxicity=detailed_info.get('finetuned_confidence', 0.5),
+                toxicity=0.98 if detailed_info.get('word_filter_detected', False) else detailed_info.get('finetuned_confidence', 0.5),
                 result_code=result_code,
                 result_text=result_text,
                 processing_time_ms=processing_time_ms,
