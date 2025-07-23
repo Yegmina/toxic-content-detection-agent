@@ -17,6 +17,8 @@ dist/toxic_detection-1.0.7-py3-none-any.whl
 dist/toxic_detection-1.0.7.tar.gz
 dist/toxic_detection-1.0.8-py3-none-any.whl
 dist/toxic_detection-1.0.8.tar.gz
+dist/toxic_detection-1.0.9-py3-none-any.whl
+dist/toxic_detection-1.0.9.tar.gz
 toxic_detection.egg-info/PKG-INFO
 toxic_detection.egg-info/SOURCES.txt
 toxic_detection.egg-info/dependency_links.txt
