@@ -553,7 +553,10 @@ class Message_Validation:
                 outputs = self.model(**inputs)
                 probabilities = torch.softmax(outputs.logits, dim=1)
                 prediction = torch.argmax(probabilities, dim=1).item()
-                confidence = torch.max(probabilities).item()
+                
+                # Get the probability for the toxic class (class 1)
+                toxic_prob = probabilities[0][1].item()  # Probability of being toxic
+                confidence = toxic_prob
             
             return {
                 'prediction': prediction,
