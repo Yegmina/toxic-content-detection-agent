@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "toxic_detection"
-dynamic = ["version"]
+version = "1.0.4"
 description = "Intelligent AI Agent for Real-time Content Moderation with 97.5% accuracy"
 readme = "README.md"
 license = "MIT"
