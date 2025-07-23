@@ -1,0 +1,16 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+include MANIFEST.in
+
+recursive-include toxic_validation_agent *.json
+recursive-include toxic_validation_agent *.py
+
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude __pycache__
+global-exclude *.log
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude Thumbs.db 

@@ -1,0 +1,46 @@
+{
+  "confidence_thresholds": {
+    "embedding_high": 0.9,
+    "finetuned_low": 0.3,
+    "finetuned_high": 0.7,
+    "ensemble": 0.7
+  },
+  "max_input_length": 512,
+  "rag_top_k": 3,
+  "ensemble_weights": {
+    "base": 0.6,
+    "rag": 0.4
+  },
+  "pipeline_enabled": {
+    "word_filter": true,
+    "embedding_classifier": true,
+    "finetuned": true,
+    "rag": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file_enabled": true,
+    "console_enabled": true,
+    "log_file": "toxic_validation.log"
+  },
+  "performance": {
+    "metrics_enabled": true,
+    "track_processing_time": true,
+    "track_pipeline_stages": true
+  },
+  "error_handling": {
+    "fail_safe": true,
+    "max_retries": 3,
+    "timeout_seconds": 30
+  },
+  "model_settings": {
+    "use_gpu": true,
+    "batch_size": 1,
+    "max_sequence_length": 128
+  },
+  "knowledge_base": {
+    "max_examples": 1000,
+    "similarity_threshold": 0.5,
+    "cache_embeddings": true
+  }
+} 

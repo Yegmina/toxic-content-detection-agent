@@ -1,3 +1,55 @@
+Metadata-Version: 2.4
+Name: toxic-content-detection-agent
+Version: 1.0.0
+Summary: Intelligent AI Agent for Real-time Content Moderation with 97.5% accuracy
+Home-page: https://github.com/Yegmina/toxic-content-detection-agent
+Author: Yehor Tereshchenko
+Author-email: Yehor Tereshchenko <your.email@example.com>
+Maintainer-email: Yehor Tereshchenko <your.email@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/Yegmina/toxic-content-detection-agent
+Project-URL: Documentation, https://github.com/Yegmina/toxic-content-detection-agent#readme
+Project-URL: Repository, https://github.com/Yegmina/toxic-content-detection-agent
+Project-URL: Bug Tracker, https://github.com/Yegmina/toxic-content-detection-agent/issues
+Keywords: ai,machine-learning,content-moderation,toxicity-detection,nlp,bert,chat-moderation,gaming,sentiment-analysis,text-classification
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Content Management
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=1.9.0
+Requires-Dist: transformers>=4.20.0
+Requires-Dist: sentence-transformers>=2.2.0
+Requires-Dist: scikit-learn>=1.0.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: tqdm>=4.62.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Requires-Dist: mypy>=0.800; extra == "dev"
+Provides-Extra: gpu
+Requires-Dist: torch>=1.9.0; extra == "gpu"
+Requires-Dist: torchvision>=0.10.0; extra == "gpu"
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
 # Toxic Message Validation Agent - Production Ready
 
 A comprehensive, enterprise-grade hybrid pipeline for gaming chat toxicity detection. This intelligent agent provides a robust, scalable solution for real-time content moderation with production-ready features including zero-tier word filtering, multi-stage ML pipeline, comprehensive error handling, and performance monitoring.
@@ -1037,3 +1089,8 @@ When reporting issues, please include:
 
 ---
 
+**Version**: 2.0.0  
+**Author**: AI Assistant  
+**Last Updated**: January 2025  
+**License**: MIT  
+**Documentation**: This README 
