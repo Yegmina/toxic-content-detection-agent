@@ -77,7 +77,7 @@ if sys.platform.startswith('win'):
 class ValidationResult:
     """Structured result object for toxicity validation."""
     is_toxic: bool
-    confidence: float
+    toxicity: float  # Changed from confidence to toxicity
     result_code: int  # -1: clean, 0: unclear, 1: toxic
     result_text: str
     processing_time_ms: float
@@ -823,7 +823,7 @@ class Message_Validation:
             # Create validation result
             result = ValidationResult(
                 is_toxic=(result_code == 1),
-                confidence=detailed_info.get('finetuned_confidence', 0.5),
+                toxicity=detailed_info.get('finetuned_confidence', 0.5),
                 result_code=result_code,
                 result_text=result_text,
                 processing_time_ms=processing_time_ms,
@@ -844,7 +844,7 @@ class Message_Validation:
             
             return ValidationResult(
                 is_toxic=False,
-                confidence=0.0,
+                toxicity=0.0,
                 result_code=0,
                 result_text='error',
                 processing_time_ms=(time.time() - start_time) * 1000,

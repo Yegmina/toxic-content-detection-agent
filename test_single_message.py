@@ -24,7 +24,7 @@ def test_message(message: str):
         # Display results
         print("\n📊 Results:")
         print(f"   Toxic: {'❌ YES' if result.is_toxic else '✅ NO'}")
-        print(f"   Confidence: {result.confidence:.2%}")
+        print(f"   Toxicity: {result.toxicity:.2%}")
         print(f"   Result Code: {result.result_code} ({result.result_text})")
         print(f"   Processing Time: {result.processing_time_ms:.1f}ms")
         print(f"   Pipeline Stage: {result.pipeline_stage}")
@@ -34,7 +34,7 @@ def test_message(message: str):
         detailed = validator.get_detailed_prediction(message)
         for stage, info in detailed.items():
             if isinstance(info, dict) and 'confidence' in info:
-                print(f"   {stage}: {info['confidence']:.2%} confidence")
+                print(f"   {stage}: {info['confidence']:.2%} токсичность")
         
         # Performance metrics
         metrics = validator.get_performance_metrics()
