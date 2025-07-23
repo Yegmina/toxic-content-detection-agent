@@ -1,0 +1,2 @@
+[console_scripts]
+toxic-validation = toxic_validation_agent.cli:main
