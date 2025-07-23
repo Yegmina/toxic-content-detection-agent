@@ -14,7 +14,7 @@ License: MIT
 Version: 1.0.0
 """
 
-__version__ = "1.0.5"
+__version__ = "1.0.6"
 __author__ = "Yehor Tereshchenko"
 __email__ = "your.email@example.com"  # Update with your email
 __license__ = "MIT"

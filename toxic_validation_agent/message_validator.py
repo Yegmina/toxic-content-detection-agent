@@ -153,7 +153,7 @@ class Message_Validation:
             ToxicValidationError: If initialization fails
         """
         try:
-            logger.info("🚀 Initializing Toxic Message Validation Agent v1.0.5")
+            logger.info("🚀 Initializing Toxic Message Validation Agent v1.0.6")
             logger.info("=" * 60)
             
             # Initialize configuration
