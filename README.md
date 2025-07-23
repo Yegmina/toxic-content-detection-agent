@@ -71,7 +71,7 @@ Structured Result Output
 #### Option 1: Install from PyPI (Recommended)
 
 ```bash
-pip install toxic-content-detection-agent
+pip install toxic_detection
 ```
 
 #### Option 2: Install from GitHub

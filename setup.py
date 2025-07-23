@@ -12,7 +12,7 @@ def read_requirements():
         return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 setup(
-    name="toxic-content-detection-agent",
+    name="toxic_detection",
     version="1.0.0",
     author="Yehor Tereshchenko",
     author_email="your.email@example.com",  # Update with your email

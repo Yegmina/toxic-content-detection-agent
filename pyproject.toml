@@ -3,7 +3,7 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "toxic-content-detection-agent"
+name = "toxic_detection"
 dynamic = ["version"]
 description = "Intelligent AI Agent for Real-time Content Moderation with 97.5% accuracy"
 readme = "README.md"
