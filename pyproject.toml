@@ -7,7 +7,7 @@ name = "toxic_detection"
 dynamic = ["version"]
 description = "Intelligent AI Agent for Real-time Content Moderation with 97.5% accuracy"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Yehor Tereshchenko", email = "your.email@example.com"}
 ]
@@ -30,7 +30,7 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
+    
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -42,7 +42,6 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Text Processing :: Linguistic",
     "Topic :: Communications :: Chat",
-    "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Content Management",
 ]
 requires-python = ">=3.8"
 dependencies = [
