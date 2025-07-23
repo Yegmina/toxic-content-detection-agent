@@ -131,7 +131,7 @@ class Message_Validation:
     """
     
     def __init__(self, 
-                 model_path: str = "yehor/distilbert-gaming-chat-toxicity-en",
+                 model_path: str = "yehort/distilbert-gaming-chat-toxicity-en",
                  config_path: Optional[str] = None,
                  enable_logging: bool = True,
                  enable_metrics: bool = True,
@@ -287,12 +287,13 @@ class Message_Validation:
             if '/' in model_path and not os.path.exists(model_path):
                 # It's a Hugging Face model ID
                 try:
-                    self.tokenizer = AutoTokenizer.from_pretrained(model_path)
-                    self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
+                    logger.info(f"   🔍 Attempting to load model from Hugging Face: {model_path}")
+                    self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+                    self.model = AutoModelForSequenceClassification.from_pretrained(model_path, trust_remote_code=True)
                     logger.info("   ✅ Fine-tuned DistilBERT loaded successfully from Hugging Face")
                 except Exception as e:
-                    logger.warning(f"   ⚠️  Failed to load Hugging Face model: {e}")
-                    logger.info("   📥 Loading default DistilBERT from Hugging Face...")
+                    logger.warning(f"   ⚠️  Failed to load Hugging Face model '{model_path}': {e}")
+                    logger.info("   📥 Falling back to default DistilBERT from Hugging Face...")
                     self.tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
                     self.model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
             else:

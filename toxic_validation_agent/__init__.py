@@ -11,10 +11,10 @@ and performance monitoring.
 
 Author: Yehor Tereshchenko
 License: MIT
-Version: 1.0.7
+Version: 1.0.8
 """
 
-__version__ = "1.0.7"
+__version__ = "1.0.8"
 __author__ = "Yehor Tereshchenko"
 __email__ = "your.email@example.com"  # Update with your email
 __license__ = "MIT"
