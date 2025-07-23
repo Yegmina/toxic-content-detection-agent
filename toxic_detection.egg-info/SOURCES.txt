@@ -8,6 +8,7 @@ requirements.txt
 setup.py
 simple_example.py
 test_comprehensive.py
+test_single_message.py
 toxicity_words.json
 .github/workflows/publish.yml
 toxic_detection.egg-info/PKG-INFO

@@ -283,19 +283,32 @@ class Message_Validation:
             # Load DistilBERT (either from Hugging Face or local path)
             logger.info(f"   Loading DistilBERT from: {model_path}")
             
-            # Get the full path to the model directory
-            if not os.path.isabs(model_path):
-                model_path = os.path.join(os.path.dirname(__file__), model_path)
-            
-            try:
-                self.tokenizer = AutoTokenizer.from_pretrained(model_path)
-                self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
-                logger.info("   ✅ Fine-tuned DistilBERT loaded successfully")
-            except Exception as e:
-                logger.warning(f"   ⚠️  Failed to load fine-tuned model: {e}")
-                logger.info("   📥 Loading default DistilBERT from Hugging Face...")
-                self.tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-                self.model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
+            # Check if it's a Hugging Face model ID (contains '/')
+            if '/' in model_path and not os.path.exists(model_path):
+                # It's a Hugging Face model ID
+                try:
+                    self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+                    self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
+                    logger.info("   ✅ Fine-tuned DistilBERT loaded successfully from Hugging Face")
+                except Exception as e:
+                    logger.warning(f"   ⚠️  Failed to load Hugging Face model: {e}")
+                    logger.info("   📥 Loading default DistilBERT from Hugging Face...")
+                    self.tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+                    self.model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
+            else:
+                # It's a local path
+                if not os.path.isabs(model_path):
+                    model_path = os.path.join(os.path.dirname(__file__), model_path)
+                
+                try:
+                    self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+                    self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
+                    logger.info("   ✅ Fine-tuned DistilBERT loaded successfully from local path")
+                except Exception as e:
+                    logger.warning(f"   ⚠️  Failed to load local model: {e}")
+                    logger.info("   📥 Loading default DistilBERT from Hugging Face...")
+                    self.tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+                    self.model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
             
             self.model.to(self.device)
             self.model.eval()
