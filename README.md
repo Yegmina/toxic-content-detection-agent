@@ -2,6 +2,8 @@
 
 A comprehensive, enterprise-grade hybrid pipeline for gaming chat toxicity detection. This intelligent agent provides a robust, scalable solution for real-time content moderation with production-ready features including zero-tier word filtering, multi-stage ML pipeline, comprehensive error handling, and performance monitoring.
 
+**Powered by Hugging Face Model**: `yehor/distilbert-gaming-chat-toxicity-en`
+
 ## 🚀 Key Features
 
 - **Zero-tier Word Filter**: Ultra-fast detection of toxic words with obfuscation support (f*ck, f-ck, etc.)

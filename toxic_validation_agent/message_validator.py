@@ -131,7 +131,7 @@ class Message_Validation:
     """
     
     def __init__(self, 
-                 model_path: str = "distilbert-base-uncased",
+                 model_path: str = "yehor/distilbert-gaming-chat-toxicity-en",
                  config_path: Optional[str] = None,
                  enable_logging: bool = True,
                  enable_metrics: bool = True,
@@ -153,7 +153,7 @@ class Message_Validation:
             ToxicValidationError: If initialization fails
         """
         try:
-            logger.info("🚀 Initializing Toxic Message Validation Agent v1.0.4")
+            logger.info("🚀 Initializing Toxic Message Validation Agent v1.0.5")
             logger.info("=" * 60)
             
             # Initialize configuration
@@ -282,11 +282,18 @@ class Message_Validation:
         try:
             # Load DistilBERT (either from Hugging Face or local path)
             logger.info(f"   Loading DistilBERT from: {model_path}")
+            
+            # Get the full path to the model directory
+            if not os.path.isabs(model_path):
+                model_path = os.path.join(os.path.dirname(__file__), model_path)
+            
             try:
                 self.tokenizer = AutoTokenizer.from_pretrained(model_path)
                 self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
+                logger.info("   ✅ Fine-tuned DistilBERT loaded successfully")
             except Exception as e:
-                logger.warning(f"   ⚠️  Failed to load from {model_path}, using default DistilBERT")
+                logger.warning(f"   ⚠️  Failed to load fine-tuned model: {e}")
+                logger.info("   📥 Loading default DistilBERT from Hugging Face...")
                 self.tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
                 self.model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
             

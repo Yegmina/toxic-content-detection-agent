@@ -13,7 +13,7 @@ def read_requirements():
 
 setup(
     name="toxic_detection",
-    version="1.0.4",
+    version="1.0.5",
     author="Yehor Tereshchenko",
     author_email="your.email@example.com",  # Update with your email
     description="Intelligent AI Agent for Real-time Content Moderation with 97.5% accuracy",
