@@ -99,9 +99,7 @@ pip install -r requirements.txt
 
 3. **Download the fine-tuned model** (required for full functionality):
 ```bash
-# The model files are not included in the repository due to size limits
-# You'll need to download them separately or train your own model
-# For now, the system will work with embeddings and word filtering only
+# From now on, the model is installed automatically from https://huggingface.co/yehort/distilbert-gaming-chat-toxicity-en, so you do not need to download anything manually here.
 ```
 
 4. **Verify installation**:
