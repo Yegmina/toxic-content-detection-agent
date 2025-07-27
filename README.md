@@ -2,7 +2,7 @@
 
 A comprehensive, enterprise-grade hybrid pipeline for gaming chat toxicity detection. This intelligent agent provides a robust, scalable solution for real-time content moderation with production-ready features including zero-tier word filtering, multi-stage ML pipeline, comprehensive error handling, and performance monitoring.
 
-**Powered by Hugging Face Model**: `yehor/distilbert-gaming-chat-toxicity-en`
+**Powered by Hugging Face Model**: `yehort/distilbert-gaming-chat-toxicity-en`
 
 ## 🚀 Key Features
 
@@ -97,11 +97,11 @@ cd toxic-content-detection-agent
 pip install -r requirements.txt
 ```
 
-3. **Download the fine-tuned model** (required for full functionality):
+3. **Model installation** (automatic):
 ```bash
-# The model files are not included in the repository due to size limits
-# You'll need to download them separately or train your own model
-# For now, the system will work with embeddings and word filtering only
+# The fine-tuned model is automatically downloaded from Hugging Face
+# Model: yehort/distilbert-gaming-chat-toxicity-en
+# No manual download required - the system handles this automatically
 ```
 
 4. **Verify installation**:
@@ -151,8 +151,7 @@ from toxic_validation_agent import Message_Validation, ValidationResult
 
 # Initialize with production configuration
 validator = Message_Validation(
-    model_path="model",
-    config_path="config.json",
+    model_path="yehort/distilbert-gaming-chat-toxicity-en",
     enable_logging=True,
     enable_metrics=True,
     max_input_length=512
@@ -162,7 +161,7 @@ validator = Message_Validation(
 result = validator.validate_message("fucking reported axe")
 
 print(f"Toxic: {result.is_toxic}")
-print(f"Confidence: {result.confidence:.3f}")
+print(f"Toxicity: {result.toxicity:.3f}")
 print(f"Processing time: {result.processing_time_ms:.2f}ms")
 print(f"Pipeline stage: {result.pipeline_stage}")
 ```
