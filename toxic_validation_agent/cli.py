@@ -66,7 +66,7 @@ Examples:
     parser.add_argument(
         "--version", "-v",
         action="version",
-        version="Toxic Content Detection Agent 1.0.22"
+        version="Toxic Content Detection Agent 1.0.23"
     )
     
     args = parser.parse_args()

@@ -18,8 +18,8 @@ Performance:
 - <50ms average processing time
 - 100% detection of explicit toxic words via zero-tier filter
 
-Author: AI Assistant
-Version: 2.0.0
+Author: Yehor Tereshchenko
+Version: 1.0.23
 License: MIT
 """
 
@@ -133,6 +133,7 @@ class Message_Validation:
     def __init__(self, 
                  model_path: str = "yehort/distilbert-gaming-chat-toxicity-en",
                  config_path: Optional[str] = None,
+                 toxic_words_path: Optional[str] = None,
                  enable_logging: bool = True,
                  enable_metrics: bool = True,
                  max_input_length: int = 512,
@@ -153,7 +154,7 @@ class Message_Validation:
             ToxicValidationError: If initialization fails
         """
         try:
-            logger.info("🚀 Initializing Toxic Message Validation Agent v1.0.6")
+            logger.info("🚀 Initializing Toxic Message Validation Agent v1.0.23")
             logger.info("=" * 60)
             
             # Initialize configuration
@@ -168,7 +169,7 @@ class Message_Validation:
             self.is_initialized = False
             
             # Load components in order
-            self._load_toxic_words()
+            self._load_toxic_words(toxic_words_path)
             self._load_models(model_path)
             self._load_knowledge_base()
             self._train_embedding_classifier()
@@ -231,9 +232,13 @@ class Message_Validation:
             logger.warning(f"⚠️  Device setup failed: {e}, falling back to CPU")
             return torch.device('cpu')
     
-    def _load_toxic_words(self) -> None:
+    def _load_toxic_words(self, toxic_words_path: Optional[str] = None) -> None:
         """
         Load toxic words dictionary for zero-tier filtering.
+        
+        Args:
+            toxic_words_path: Optional path to custom toxicity_words.json file.
+                            If None, uses package default or fallback.
         
         Raises:
             ToxicValidationError: If loading fails and no fallback available
@@ -241,15 +246,39 @@ class Message_Validation:
         logger.info("📚 Loading toxic words dictionary...")
         
         try:
-            # Try to load from JSON file
-            json_path = Path("toxicity_words.json")
-            if json_path.exists():
-                with open(json_path, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                    self.toxic_words = data["toxic_words"]
-                logger.info(f"   ✅ Loaded {len(self.toxic_words)} toxic word categories")
-            else:
-                raise FileNotFoundError("toxicity_words.json not found")
+            # Priority order: user path -> package default -> fallback
+            json_paths = []
+            
+            # 1. User-provided path (highest priority)
+            if toxic_words_path:
+                json_paths.append(Path(toxic_words_path))
+            
+            # 2. Current directory
+            json_paths.append(Path("toxicity_words.json"))
+            
+            # 3. Package default (in the same directory as this module)
+            package_dir = Path(__file__).parent
+            json_paths.append(package_dir / "toxicity_words.json")
+            
+            # Try each path
+            loaded = False
+            for json_path in json_paths:
+                if json_path.exists():
+                    try:
+                        with open(json_path, "r", encoding="utf-8") as f:
+                            data = json.load(f)
+                            self.toxic_words = data["toxic_words"]
+                        
+                        source = "user-provided" if toxic_words_path and json_path == Path(toxic_words_path) else "package default" if json_path == package_dir / "toxicity_words.json" else "local file"
+                        logger.info(f"   ✅ Loaded {len(self.toxic_words)} toxic word categories from {source}")
+                        loaded = True
+                        break
+                    except Exception as e:
+                        logger.warning(f"   ⚠️  Failed to load {json_path}: {e}")
+                        continue
+            
+            if not loaded:
+                raise FileNotFoundError("No valid toxicity_words.json found")
                 
         except Exception as e:
             logger.warning(f"   ⚠️  Failed to load toxicity_words.json: {e}")
