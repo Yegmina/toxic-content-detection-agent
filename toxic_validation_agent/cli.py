@@ -66,7 +66,7 @@ Examples:
     parser.add_argument(
         "--version", "-v",
         action="version",
-        version="Toxic Content Detection Agent 1.0.6"
+        version="Toxic Content Detection Agent 1.0.21"
     )
     
     args = parser.parse_args()
@@ -110,7 +110,7 @@ def validate_message(validator: Message_Validation, message: str, detailed: bool
         output = {
             "message": message,
             "is_toxic": result.is_toxic,
-            "confidence": result.confidence,
+            "toxicity": result.toxicity,
             "result_code": result.result_code,
             "result_text": result.result_text,
             "processing_time_ms": result.processing_time_ms,
@@ -121,7 +121,7 @@ def validate_message(validator: Message_Validation, message: str, detailed: bool
         if detailed:
             print(f"📝 Message: {message}")
             print(f"🎯 Toxic: {result.is_toxic}")
-            print(f"📊 Confidence: {result.confidence:.3f}")
+            print(f"📊 Toxicity: {result.toxicity:.3f}")
             print(f"🏷️  Result: {result.result_text} ({result.result_code})")
             print(f"⏱️  Processing time: {result.processing_time_ms:.2f}ms")
             print(f"🔧 Pipeline stage: {result.pipeline_stage}")
@@ -148,7 +148,7 @@ def validate_file(validator: Message_Validation, file_path: str, detailed: bool,
         results.append({
             "message": message,
             "is_toxic": result.is_toxic,
-            "confidence": result.confidence,
+            "toxicity": result.toxicity,
             "result_code": result.result_code,
             "result_text": result.result_text,
             "processing_time_ms": result.processing_time_ms,
@@ -168,7 +168,7 @@ def validate_file(validator: Message_Validation, file_path: str, detailed: bool,
             status = "🚫 TOXIC" if result["is_toxic"] else "✅ CLEAN"
             if detailed:
                 print(f"{status}: {result['message']}")
-                print(f"  Confidence: {result['confidence']:.3f}, Stage: {result['pipeline_stage']}")
+                print(f"  Toxicity: {result['toxicity']:.3f}, Stage: {result['pipeline_stage']}")
             else:
                 print(f"{status}: {result['message']}")
         
