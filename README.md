@@ -4,7 +4,7 @@ A comprehensive, enterprise-grade hybrid pipeline for gaming chat toxicity detec
 
 **Powered by Hugging Face Model**: `yehort/distilbert-gaming-chat-toxicity-en`
 
-## 🚀 Key Features
+##  Key Features
 
 - **Zero-tier Word Filter**: Ultra-fast detection of toxic words with obfuscation support (f*ck, f-ck, etc.)
 - **Hybrid ML Pipeline**: Multi-stage processing (Embeddings → Fine-tuned → RAG)
@@ -13,7 +13,7 @@ A comprehensive, enterprise-grade hybrid pipeline for gaming chat toxicity detec
 - **Easy Integration**: Simple API with structured results
 - **Self-Contained**: All models and data included in one folder
 
-## 📊 Performance Metrics
+##  Performance Metrics
 
 | Metric | Value |
 |--------|-------|
@@ -24,7 +24,7 @@ A comprehensive, enterprise-grade hybrid pipeline for gaming chat toxicity detec
 | **Zero-tier Filter Hits** | 100% of explicit toxic words |
 | **Pipeline Efficiency** | 4-stage confidence-based routing |
 
-## 🏗️ Architecture Overview
+##  Architecture Overview
 
 ```
 Message Input
@@ -60,7 +60,7 @@ Message Input
 Structured Result Output
 ```
 
-## 📦 Installation
+##  Installation
 
 ### Prerequisites
 
@@ -128,7 +128,7 @@ toxic_validation_agent/
     └── ...
 ```
 
-## 🎯 Quick Start
+##  Quick Start
 
 ### Basic Usage
 
@@ -194,7 +194,7 @@ toxic-validation --health-check
 🔧 Pipeline stage: word_filter
 ```
 
-## 📋 API Reference
+##  API Reference
 
 ### Message_Validation Class
 
@@ -400,7 +400,7 @@ validator = Message_Validation(
 )
 ```
 
-## 🧪 Testing & Examples
+##  Testing & Examples
 
 ### 1. Simple Example (`simple_example.py`)
 
@@ -553,7 +553,7 @@ Processing Time: 83.34ms
    Unclear Accuracy: 60.0%
 ```
 
-## 🔍 Error Handling
+##  Error Handling
 
 The bot includes comprehensive error handling with graceful degradation:
 
@@ -637,7 +637,7 @@ else:
     print(f"System issues: {health['error']}")
 ```
 
-## 🔧 Advanced Usage
+##  Advanced Usage
 
 ### Batch Processing
 
@@ -707,7 +707,7 @@ Use it:
 validator = Message_Validation(config_path="my_config.json")
 ```
 
-## 🚀 Production Deployment
+##  Production Deployment
 
 ### Docker Deployment
 
@@ -779,7 +779,7 @@ def validate_with_cache(message):
     return result
 ```
 
-## 🎯 Use Cases
+##  Use Cases
 
 ### Gaming Chat Moderation
 
@@ -941,7 +941,7 @@ def cached_validation(message):
     return validator.validate_message(message)
 ```
 
-## 📈 Performance Benchmarks
+##  Performance Benchmarks
 
 ### Accuracy by Category
 
@@ -970,7 +970,7 @@ def cached_validation(message):
 | **GPU** | 2-4GB VRAM |
 | **Disk** | ~500MB (models) |
 
-## 🤝 Contributing
+##  Contributing
 
 1. **Fork the repository**
 2. **Create a feature branch**: `git checkout -b feature/new-feature`
@@ -996,11 +996,11 @@ python -m pytest test_comprehensive.py -v
 python -m pytest test_comprehensive.py --cov=message_validator
 ```
 
-## 📄 License
+##  License
 
 MIT License - see LICENSE file for details.
 
-## 🆘 Support
+##  Support
 
 ### Getting Help
 
